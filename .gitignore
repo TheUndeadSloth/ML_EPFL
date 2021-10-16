@@ -129,6 +129,7 @@ dmypy.json
 .pyre/
 #priv files
 Project_1\sebPrivFunc.py
+Project_1/ferdPrivFunc.ipynb
 
 #priv path to data
 Project_1/DataExtr
