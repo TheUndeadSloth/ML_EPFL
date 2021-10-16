@@ -127,3 +127,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+#priv files
+ML_EPFL\Project 1\sebPrivFunc.py
