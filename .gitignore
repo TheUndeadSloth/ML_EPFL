@@ -128,7 +128,7 @@ dmypy.json
 # Pyre type checker
 .pyre/
 #priv files
-Project_1\sebPrivFunc.py
+Project_1/sebPrivFunc.py
 Project_1/ferdPrivFunc.ipynb
 
 #priv path to data
