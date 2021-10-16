@@ -131,5 +131,6 @@ dmypy.json
 Project_1/sebPrivFunc.py
 Project_1/ferdPrivFunc.ipynb
 
-#priv path to data
-Project_1/DataExtr
+#path to data
+Project_1/Data/test.csv
+Project_1/Data/train.csv
