@@ -1,3 +1,4 @@
+import numpy as np
 def least_squares(y, tx):
     
     """calculate the least squares solution."""
