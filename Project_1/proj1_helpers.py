@@ -55,3 +55,12 @@ def create_csv_submission(ids, y_pred, name):
         writer.writeheader()
         for r1, r2 in zip(ids, y_pred):
             writer.writerow({'Id':int(r1),'Prediction':int(r2)})
+
+
+def the_mean_function(data, outlier):
+    data = data.transpose()
+    means = np.average(data, weights=(data != outlier), axis=0)
+    newData = np.where(data[0] != outlier, data[0], means[0])
+    for i in range(1, data.shape[0]):
+        newData = np.vstack([newData,np.where(data[i] != outlier, data[i], means[i])])
+    return newData
