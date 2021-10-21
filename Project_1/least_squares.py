@@ -1,6 +1,6 @@
 import numpy as np
 def least_squares(y, tx):
-    print("hej")
+  
     """calculate the least squares solution."""
    
     w = np.linalg.solve((tx.T @ tx), y @ tx)

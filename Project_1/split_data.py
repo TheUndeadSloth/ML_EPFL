@@ -1,23 +1,20 @@
 
 import numpy as np
 
+def build_k_indices(y, k_fold, seed):
+    """build k indices for k-fold."""
+    num_row = y.shape[0]
+    interval = int(num_row / k_fold)
+    np.random.seed(seed)
+    indices = np.random.permutation(num_row)
+    k_indices = [indices[k * interval: (k + 1) * interval]
+                 for k in range(k_fold)]
+    return np.array(k_indices)
 
-def split_data(x, y, ratio, seed=1):
-    """
-    split the dataset based on the split ratio. If ratio is 0.8 
-    you will have 80% of your data set dedicated to training 
-    and the rest dedicated to testing
-    """
-    # set seed
-    np.random.seed(seed)
-    np.random.shuffle(x)
-    np.random.seed(seed)
-    np.random.shuffle(y)
-    indRat = int(ratio*len(y))
-    trainX, trainY = x[0:indRat],y[0:indRat]
-    testX, testY = x[indRat:len(x)], y[indRat:len(x)]
-    # ***************************************************
-    # INSERT YOUR CODE HERE
-    # split the data based on the given ratio: TODO
-    # ***************************************************
-    return trainX, trainY, testX, testY
+def example():
+    for inds in k_indices:
+       
+        yTest = y[inds]
+        xTest = x[inds]
+        xTrain = np.delete(x, inds)
+        yTrain = np.delete(y, inds)
