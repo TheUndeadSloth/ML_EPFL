@@ -63,4 +63,4 @@ def the_mean_function(data, outlier):
     newData = np.where(data[0] != outlier, data[0], means[0])
     for i in range(1, data.shape[0]):
         newData = np.vstack([newData,np.where(data[i] != outlier, data[i], means[i])])
-    return newData
+    return newData.transpose()
