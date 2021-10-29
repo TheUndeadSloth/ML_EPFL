@@ -22,3 +22,12 @@ def calculate_loss(y, tx, w):
     for ind in range(len(y)):
         loss = loss - y[ind]*tx[ind,:].T @ w + np.log(1+np.exp(tx[ind,:].T @ w))
     return loss
+def penalized_logistic_regression(y, tx, lambda_,initial_w, max_iters, gamma):
+    """return the loss, gradient"""
+    w = initial_w
+    for i in range(max_iters):
+        gradient = calculate_gradient(y, tx , w) + 2*lambda_*w
+        w = w - gamma*gradient
+
+    loss = calculate_loss(y, tx , w) + lambda_*w.T @ w
+    return loss, gradient
