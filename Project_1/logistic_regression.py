@@ -18,10 +18,12 @@ def calculate_gradient(y, tx, w):
     return grad
 def calculate_loss(y, tx, w):
     """compute the loss: negative log likelihood."""
-    loss = 0
-    for ind in range(len(y)):
-        loss = loss - y[ind]*tx[ind,:].T @ w + np.log(1+np.exp(tx[ind,:].T @ w))
+    
+    loss = np.sum(-y*(tx @ w) + np.log(1+np.exp(tx @ w)))
+    
+ 
     return loss
+
 def penalized_logistic_regression(y, tx, lambda_,initial_w, max_iters, gamma):
     """return the loss, gradient"""
     w = initial_w

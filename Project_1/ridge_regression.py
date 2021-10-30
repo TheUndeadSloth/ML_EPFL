@@ -12,4 +12,4 @@ def ridge_regression(y, tx, lambda_):
     w = np.linalg.solve(x2 + 2*len(y)*lambda_*np.identity(x2.shape[0]),np.transpose(tx) @ y)
     e = y-tx @ w
     mse =  1/(2*len(y))*e.T@e
-    return mse[0,0], w
+    return mse, w

@@ -2,6 +2,7 @@
 """some helper functions for project 1."""
 import csv
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 def load_csv_data(data_path, sub_sample=False):
@@ -13,7 +14,7 @@ def load_csv_data(data_path, sub_sample=False):
 
     # convert class labels from strings to binary (-1,1)
     yb = np.ones(len(y))
-    yb[np.where(y=='b')] = -1
+    yb[np.where(y=='b')] = 0
     
     # sub-sample
     if sub_sample:
@@ -94,3 +95,27 @@ def cross_validation(matrix, k_indices, k, lambda_, degree):
     loss_te = np.sqrt(2 * costs.compute_mse(test_y, test_x , weights))
     
     return loss_tr, loss_te
+def build_k_indices(y, k_fold, seed):
+    """build k indices for k-fold."""
+    num_row = y.shape[0]
+    interval = int(num_row / k_fold)
+    np.random.seed(seed)
+    indices = np.random.permutation(num_row)
+    k_indices = [indices[k * interval: (k + 1) * interval]
+                 for k in range(k_fold)]
+    return np.array(k_indices)
+def compute_mse(y,tx,w):
+    e = y - tx @ w
+    mse =  1/(2*len(y))*e.T@e
+    return mse
+def cross_validation_visualization(lambds, mse_tr, mse_te):
+    """visualization the curves of mse_tr and mse_te."""
+    plt.semilogx(lambds, mse_tr, marker=".", color='b', label='train error')
+    plt.semilogx(lambds, mse_te, marker=".", color='r', label='test error')
+    plt.xlabel("lambda")
+    plt.ylabel("rmse")
+  
+    plt.title("cross validation")
+    plt.legend(loc=2)
+    plt.grid(True)
+    plt.savefig("cross_validation")
