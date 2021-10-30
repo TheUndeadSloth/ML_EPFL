@@ -33,3 +33,15 @@ def penalized_logistic_regression(y, tx, lambda_,initial_w, max_iters, gamma):
 
     loss = calculate_loss(y, tx , w) + lambda_*w.T @ w
     return loss, gradient
+def compute_loss_log_reg(y,tx,w):
+    """Computes loss for logistic regression"""
+    e = y - sigmoid(tx @ w)
+    mse =  1/(2*len(y))*e.T@e
+    return mse
+def sigmoid(t):
+    """apply the sigmoid function on t."""
+    # ***************************************************
+    # INSERT YOUR CODE HERE
+    # TODO
+    # ***************************************************
+    return np.exp(t)/(1+np.exp(t))

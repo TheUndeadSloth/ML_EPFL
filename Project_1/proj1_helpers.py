@@ -37,10 +37,11 @@ def load_csv_Test(data_path, sub_sample=False):
 def predict_labels(weights, data):
     """Generates class predictions given weights, and a test data matrix"""
     y_pred = np.dot(data, weights)
-    y_pred[np.where(y_pred <= 0)] = -1
-    y_pred[np.where(y_pred > 0)] = 1
+    y_pred[np.where(y_pred <= 0.5)] = 0
+    y_pred[np.where(y_pred > 0.5)] = 1
     
     return y_pred
+
 
 
 def create_csv_submission(ids, y_pred, name):
@@ -119,3 +120,4 @@ def cross_validation_visualization(lambds, mse_tr, mse_te):
     plt.legend(loc=2)
     plt.grid(True)
     plt.savefig("cross_validation")
+
