@@ -65,15 +65,11 @@ def the_mean_function(data, outlier):
         newData = np.vstack([newData,np.where(data[i] != outlier, data[i], means[i])])
     return newData.transpose()
 
-def cross_validation(y, x, k_indices, k, lambda_, degree):
+def cross_validation(matrix, k_indices, k, lambda_, degree):
     """return the loss of ridge regression."""
     
-    data = np.vstack((y,x)).T
+    data = matrix
     
-    # ***************************************************
-    # INSERT YOUR CODE HERE
-    # get k'th subgroup in test, others in train: TODO
-    # *************************************************** 
     #make a mask to extract all test data
     mask = np.zeros(data.shape[0], dtype=bool)
     mask[k_indices[k]] = True
@@ -82,30 +78,19 @@ def cross_validation(y, x, k_indices, k, lambda_, degree):
     amask = np.invert(mask)
     train = data[amask,...]
     
+    train_x = train[:,1:]
+    test_x = test[:,1:]
+    
     train_y = train[:,0]
     test_y = test[:,0]
     
-    # ***************************************************
-    # INSERT YOUR CODE HERE
-    # form data with polynomial degree: TODO
-    # ***************************************************
+    # ridge regression
     
-    train_fi = build_poly(train[:,1], degree)
-    test_fi = build_poly(test[:,1], degree)
+    weights = ridge_regression(train_y,train_x,lambda_)[1]
     
-    # ***************************************************
-    # INSERT YOUR CODE HERE
-    # ridge regression: TODO
-    # ***************************************************
+    # calculate the loss for train and test data:
     
-    weights = ridge_regression(train_y,train_fi,lambda_)[1]
-    
-    # ***************************************************
-    # INSERT YOUR CODE HERE
-    # calculate the loss for train and test data: TODO
-    # ***************************************************
-    
-    loss_tr = np.sqrt(2 * costs.compute_mse(train_y, train_fi , weights))
-    loss_te = np.sqrt(2 * costs.compute_mse(test_y, test_fi , weights))
+    loss_tr = np.sqrt(2 * costs.compute_mse(train_y, train_x , weights))
+    loss_te = np.sqrt(2 * costs.compute_mse(test_y, test_x , weights))
     
     return loss_tr, loss_te
