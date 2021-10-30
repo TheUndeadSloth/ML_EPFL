@@ -64,3 +64,48 @@ def the_mean_function(data, outlier):
     for i in range(1, data.shape[0]):
         newData = np.vstack([newData,np.where(data[i] != outlier, data[i], means[i])])
     return newData.transpose()
+
+def cross_validation(y, x, k_indices, k, lambda_, degree):
+    """return the loss of ridge regression."""
+    
+    data = np.vstack((y,x)).T
+    
+    # ***************************************************
+    # INSERT YOUR CODE HERE
+    # get k'th subgroup in test, others in train: TODO
+    # *************************************************** 
+    #make a mask to extract all test data
+    mask = np.zeros(data.shape[0], dtype=bool)
+    mask[k_indices[k]] = True
+    
+    test = data[mask,...]
+    amask = np.invert(mask)
+    train = data[amask,...]
+    
+    train_y = train[:,0]
+    test_y = test[:,0]
+    
+    # ***************************************************
+    # INSERT YOUR CODE HERE
+    # form data with polynomial degree: TODO
+    # ***************************************************
+    
+    train_fi = build_poly(train[:,1], degree)
+    test_fi = build_poly(test[:,1], degree)
+    
+    # ***************************************************
+    # INSERT YOUR CODE HERE
+    # ridge regression: TODO
+    # ***************************************************
+    
+    weights = ridge_regression(train_y,train_fi,lambda_)[1]
+    
+    # ***************************************************
+    # INSERT YOUR CODE HERE
+    # calculate the loss for train and test data: TODO
+    # ***************************************************
+    
+    loss_tr = np.sqrt(2 * costs.compute_mse(train_y, train_fi , weights))
+    loss_te = np.sqrt(2 * costs.compute_mse(test_y, test_fi , weights))
+    
+    return loss_tr, loss_te
