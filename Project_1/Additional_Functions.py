@@ -26,6 +26,8 @@ def compute_mse(y,tx,w):
     e = y - tx @ w
     mse =  1/(2*len(y))*e.T@e
     return mse
+def sigmoid(t):
+    return np.exp(t)/(1 + np.exp(t))
 
 def cross_validation(y,tx, degree):
     w_init = least_squares(y,tx)[1]
