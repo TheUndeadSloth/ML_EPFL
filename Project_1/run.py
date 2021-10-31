@@ -16,7 +16,7 @@ if __name__ == "__main__":
     print(mse)
     w_init = np.zeros(w_least_squares.shape)
     """Gradien descent prediction, gamma gotten with the help of cross validation see additional functions"""
-    w_GD, mse = gradient_descent(y,tx, w_init,500,2.395026619987486e-07)
+    w_GD, mse = least_squares_GD(y,tx, w_init,500,2.395026619987486e-07)
     generetate_csv_prediction(idsTest, w_GD, txTest, "testSub_Gradient_Descent.csv")
     print(mse)
     """Ridge regresion prediction, lambda decided in same way as gamma"""

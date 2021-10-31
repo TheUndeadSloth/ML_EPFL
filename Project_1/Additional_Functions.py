@@ -53,11 +53,12 @@ def cross_validation(y,tx, degree):
             mask = np.zeros(tx.shape[0], dtype=bool)
             mask[k_indices[k]] = True
 
-            train_x = tx[mask,...]
-            train_y = y[mask]
+            test_x = tx[mask,...]
+            test_y = y[mask]
+        
             amask = np.invert(mask)
-            test_x = tx[amask,...]
-            test_y = y[amask]
+            train_x = tx[amask,...]
+            train_y = y[amask]
             """TODO add function you want to evaluate"""
             raise NotImplementedError
 
