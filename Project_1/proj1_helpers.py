@@ -109,15 +109,15 @@ def compute_mse(y,tx,w):
     e = y - tx @ w
     mse =  1/(2*len(y))*e.T@e
     return mse
-def cross_validation_visualization(lambds, mse_tr, mse_te):
+def cross_validation_visualization(lambds, mse_tr, mse_te,name,degree):
     """visualization the curves of mse_tr and mse_te."""
     plt.semilogx(lambds, mse_tr, marker=".", color='b', label='train error')
     plt.semilogx(lambds, mse_te, marker=".", color='r', label='test error')
-    plt.xlabel("lambda")
+    plt.xlabel("lambda^%s"%degree)
     plt.ylabel("rmse")
   
-    plt.title("cross validation")
+    plt.title("cross validation "+name)
     plt.legend(loc=2)
     plt.grid(True)
-    plt.savefig("cross_validation")
+    plt.savefig("CD_"+name)
 
