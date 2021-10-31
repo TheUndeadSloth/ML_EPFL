@@ -1,5 +1,5 @@
 import numpy as np
-from implemenations import *
+from implementations import *
 from helpers import *
 from Additional_Functions import compute_mse
 
@@ -9,14 +9,14 @@ if __name__ == "__main__":
    
     tx = build_poly(txTemp,1)
     txTest = build_poly(txTestTemp,1)
-
-    w_init = np.zeros(tx.shape[1])
     
     #remember to output prediction
     """Least squares prediction:"""
     w_ls, mse = least_squares(y, tx)
     generetate_csv_prediction(idsTest, w_ls, txTest, "testSub_least_squares.csv")
     print(mse)
+
+    w_init = np.zeros(w_ls.shape)
 
     """Gradien descent prediction. Got gamma with the help of cross validation, see additional functions"""
     w_GD, mse = least_squares_GD(y, tx, w_init, 500, 2.395026619987486e-07)
@@ -29,7 +29,7 @@ if __name__ == "__main__":
     print(mse)
 
     """Stochastic gradient descent prediction. Decided to use similar gamma as in gradient descent"""
-    w_SGD, mse = least_squares_SGD(y, tx, w_init, 500, 2.395026619987486e-07)
+    w_SGD, mse = least_squares_SGD(np.squeeze(np.asarray(y)), tx, np.squeeze(np.asarray(w_init)), 500, 2.395026619987486e-07)
     generetate_csv_prediction(idsTest, w_SGD, txTest, "testSub_Stochastic_Gradient_Descent.csv")
     print(mse)
 

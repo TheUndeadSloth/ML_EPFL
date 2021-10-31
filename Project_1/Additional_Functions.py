@@ -2,15 +2,7 @@ from implemenations import *
 import numpy as np
 import matplotlib.pyplot as plt
 from helpers import *
-def build_k_indices(y, k_fold, seed):
-    """build k indices for k-fold."""
-    num_row = y.shape[0]
-    interval = int(num_row / k_fold)
-    np.random.seed(seed)
-    indices = np.random.permutation(num_row)
-    k_indices = [indices[k * interval: (k + 1) * interval]
-                 for k in range(k_fold)]
-    return np.array(k_indices)
+
 def cross_validation_visualization(lambds, mse_tr, mse_te,name,degree):
     """visualization the curves of mse_tr and mse_te."""
     plt.semilogx    (lambds, mse_tr, marker=".", color='b', label='train error')
@@ -22,12 +14,6 @@ def cross_validation_visualization(lambds, mse_tr, mse_te,name,degree):
     plt.legend(loc=2)
     plt.grid(True)
     plt.savefig("CD_"+name)
-def compute_mse(y,tx,w):
-    e = y - tx @ w
-    mse =  1/(2*len(y))*e.T@e
-    return mse
-def sigmoid(t):
-    return np.exp(t)/(1 + np.exp(t))
 
 def cross_validation(y,tx, degree):
     w_init = least_squares(y,tx)[1]
