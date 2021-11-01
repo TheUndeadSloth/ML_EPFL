@@ -2,7 +2,7 @@ from implementations import *
 import numpy as np
 import matplotlib.pyplot as plt
 from helpers import *
-
+"""Creates graph for cross validation and saves in file with the name inputed """
 def cross_validation_visualization(lambds, mse_tr, mse_te,name,degree):
     """visualization the curves of mse_tr and mse_te."""
     plt.semilogx    (lambds, mse_tr, marker=".", color='b', label='train error')
@@ -14,13 +14,11 @@ def cross_validation_visualization(lambds, mse_tr, mse_te,name,degree):
     plt.legend(loc=2)
     plt.grid(True)
     plt.savefig("CD_"+name)
-
+"""This is cross validation that was used during our testing"""
 def cross_validation(y,tx, degree):
     w_init = least_squares(y,tx)[1]
     w_init = np.zeros(w_init.shape)
-    #w_init = np.zeros(w_init.shape)
-    #gradient descent -15 to -6.5 gives good overview gamma = 3.727593720314938e-07 with degree 5
-    #logistic gradeint diverges after around -14 graph until 13.8 gives good overview -14 good with rmse
+   
     lambdas = np.logspace(-10, -3,30)
     rmse_te = []
     rmse_tr = []
@@ -54,14 +52,8 @@ def cross_validation(y,tx, degree):
             loss_te = np.sqrt(2 * compute_mse(test_y, test_x , weights))
         
             """logistic loss"""
-            
             # loss_tr = calculate_loss(train_y, train_x, weights)
-            # loss_te = calculate_loss(test_y, test_x, weights)
-            """predictive loss"""
-            # e = train_y - predict_labels(weights,train_x)
-            # loss_tr = np.sqrt(1/len(e)*e.T @ e)
-            # e = test_y - predict_labels(weights,test_x)
-            # loss_te = np.sqrt(1/len(e)*e.T @ e)
+            # loss_te = calculate_loss(test_y, test_x, weights
             tr.append(loss_tr)
             te.append(loss_te)
 
@@ -76,5 +68,6 @@ def cross_validation(y,tx, degree):
             
     degreeStr = str(1)
     cross_validation_visualization(lambdas, rmse_tr, rmse_te, 'GD test degree = %s' % degree,degreeStr)
+    #Prints out the most effective hyperparameter and the corresponding loss
     print(min_lambda)
     print(min_loss1)

@@ -1,12 +1,12 @@
 import numpy as np
 from helpers import *
-
+"""Least squares method"""
 def least_squares(y, tx):
     w = np.linalg.solve((np.transpose(tx) @ tx), tx.T@y)
     mse = compute_mse(y, tx, w)
 
     return w, mse
-
+"""Gradient descent optimising mse"""
 def least_squares_GD(y, tx, initial_w, max_iters, gamma):
     w = initial_w
 
@@ -29,7 +29,7 @@ def ridge_regression(y, tx, lambda_):
 
     return w, mse
 
-
+"""Stochastic gradient descent optimising mse"""
 def least_squares_SGD(y, tx, initial_w, max_iters, gamma):
     w = initial_w
 
@@ -56,7 +56,7 @@ def least_squares_SGD(y, tx, initial_w, max_iters, gamma):
 
     return w, mse, log_loss
 
-
+"""Logistic gradient descent"""
 def logistic_regression(y, tx, initial_w, max_iters, gamma):
     w = initial_w
 
@@ -68,7 +68,7 @@ def logistic_regression(y, tx, initial_w, max_iters, gamma):
 
     return w, log_loss
 
-
+"""Penalized Logistic gradient descent"""
 def reg_logistic_regression(y, tx, lambda_, initial_w, max_iters, gamma):
     w = initial_w
 
