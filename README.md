@@ -16,4 +16,4 @@ We have helpers.py with helper functions that will be called either by run.py or
 
 we have Aditional functions that just includes the crossvalidation used in our project
 
-The folder pictures contains the graphs mentioned in the report that did not fit
+The folder pictures contains the graphs mentioned in the report that did not fit RR-Ridge regression, GD-Gradient descent
