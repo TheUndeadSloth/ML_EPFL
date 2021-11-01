@@ -148,3 +148,5 @@ testSub_Logistic_Regression.csv
 testSub_Regularized_Logistic_Regression.csv
 testSub_Ridge_Regression.csv
 testSub_Stochastic_Gradient_Descent.csv
+
+.vscode
