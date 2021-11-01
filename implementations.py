@@ -51,10 +51,9 @@ def least_squares_SGD(y, tx, initial_w, max_iters, gamma):
 
             #update weight by gradient
             w = w - gamma * gradient
-    log_loss = (np.log(1 + np.exp(tx @ w)) - y*(tx @ w)).sum()
     mse = compute_mse(y, tx, w)
 
-    return w, mse, log_loss
+    return w, mse
 
 """Logistic gradient descent"""
 def logistic_regression(y, tx, initial_w, max_iters, gamma):

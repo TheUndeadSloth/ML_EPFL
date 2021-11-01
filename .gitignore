@@ -150,3 +150,8 @@ testSub_Ridge_Regression.csv
 testSub_Stochastic_Gradient_Descent.csv
 
 .vscode
+
+Data/test.csv
+Data/train.csv
+Data\test.csv
+Data\train.csv

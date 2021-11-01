@@ -28,8 +28,8 @@ if __name__ == "__main__":
     generetate_csv_prediction(idsTest, w_RR, txTest, "testSub_Ridge_Regression.csv")
     print(mse)
 
-    """Stochastic gradient descent prediction. Decided to use similar gamma as in gradient descent"""
-    w_SGD, mse = least_squares_SGD(np.squeeze(np.asarray(y)), tx, np.squeeze(np.asarray(w_init)), 500, 2.395026619987486e-07)
+    """Stochastic gradient descent prediction. Decided to a little lower gamma than gradient descent to avoid overflow error"""
+    w_SGD, mse = least_squares_SGD(np.squeeze(np.asarray(y)), tx, np.squeeze(np.asarray(w_init)), 500, 2.11e-08)
     generetate_csv_prediction(idsTest, w_SGD, txTest, "testSub_Stochastic_Gradient_Descent.csv")
     print(mse)
 
@@ -41,7 +41,7 @@ if __name__ == "__main__":
     print(log_loss)
 
     """Regularized logistic regression prediction. Got lambda from cross validation and used same gamma as in logistic regression"""
-    w_RLR, log_loss = reg_logistic_regression(y, tx, 23357214690, w_init, 500, 1e-11)
+    w_RLR, log_loss = reg_logistic_regression(y, tx, 50000000, w_init, 500, 1e-11)
     mse = compute_mse(y, tx, w_RLR)
     generetate_csv_prediction(idsTest, w_RLR, txTest, "testSub_Regularized_Logistic_Regression.csv")
     print(mse)
