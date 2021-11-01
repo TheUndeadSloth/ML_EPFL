@@ -139,3 +139,19 @@ Project_1/Data/train.csv
 Project_1/sebPrivFunc.py
 
 #123
+testSub_Best.csv
+TestingSebastian.ipynb
+FerdFinalTesting.ipynb
+testSub_Gradient_Descent.csv
+testSub_least_squares.csv
+testSub_Logistic_Regression.csv
+testSub_Regularized_Logistic_Regression.csv
+testSub_Ridge_Regression.csv
+testSub_Stochastic_Gradient_Descent.csv
+
+.vscode
+
+Data/test.csv
+Data/train.csv
+Data\test.csv
+Data\train.csv
