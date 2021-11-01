@@ -8,8 +8,10 @@ We unpacked the test.csv and train.csv to the Data-folder, but the files are too
 
 ## Files
 
-We have one file with the 6 mandatory functions: least_squares + GD, SGD, ridge_regression, logistic_regression + penalized
+We have implementations.py with the 6 mandatory functions: least_squares + GD, SGD, ridge_regression, logistic_regression + penalized
 
-We have one file with helper functions: 
+We have helpers.py with helper functions: 
 
 And we have the main file run.py with the code to generate our predition
+
+we have Aditional functions that just includes the crossvalidation used in our project
